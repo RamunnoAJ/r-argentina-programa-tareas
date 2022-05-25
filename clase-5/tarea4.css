@@ -1,0 +1,107 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 10px;
+
+  /* ================================
+           COLORS
+    m      = modified
+    l      = light
+    d      = dark
+===================================== */
+
+  --color-primary: rgb(248, 250, 252);
+  --color-secondary: rgb(82, 214, 244);
+  --color-tertiary: rgb(140, 139, 138);
+
+  --color-quaternary: hsl(192, 40%, 42%);
+  --color-quaternary-m-l: hsla(192, 40%, 42%, 0.1);
+  --color-quaternary-m-d: hsla(192, 40%, 42%, 0.8);
+
+  --color-quinary: rgb(53, 54, 56);
+
+  --color-senary: rgb(255, 255, 255);
+  --color-senary-m-d: rgb(0, 0, 0);
+
+  --color-septenary: rgb(59, 130, 246);
+
+  /* ================================
+           PADDING
+      xl      = extra large
+      l       = large
+      m       = medium
+      s       = small
+      xs      = extra small
+
+      h       = horizontal (left & right)
+      v       = vertical (top & bottom)
+===================================== */
+
+  --padding-xl-h: calc(3rem + 6vw);
+  --padding-xl-v: calc(3rem + 6vh);
+
+  --padding-l-h: calc(3rem + 3vw);
+  --padding-l-v: calc(3rem + 3vh);
+
+  --padding-m-h: calc(2rem + 2vw);
+  --padding-m-v: calc(2rem + 2vh);
+
+  --padding-s-h: calc(1rem + 2vw);
+  --padding-s-v: calc(1rem + 2vh);
+
+  --padding-xs-h: calc(0.5rem + 1vw);
+  --padding-xs-v: calc(0.5rem + 1vh);
+
+  --padding-xxs-h: calc(0.5rem + 0.5vw);
+  --padding-xxs-v: calc(0.5rem + 0.5vh);
+
+  /* ================================
+           PADDING
+    xl    = extra large
+    l     = large
+    m     = medium
+    s     = small
+    xs    = extra small
+
+    d     = dynamic
+    st    = static
+===================================== */
+
+  --font-size-d-xl: calc(3rem + 3vw);
+  --font-size-d-l: calc(2rem + 2vw);
+  --font-size-d-m: calc(1rem + 2vw);
+  --font-size-d-s: calc(1rem + 1vw);
+  --font-size-d-xs: calc(1rem + 0.5vw);
+
+  --font-size-st-l: 3rem;
+  --font-size-st-m: 2rem;
+  --font-size-st-s: 1.5rem;
+  --font-size-st-xs: 1rem;
+}
+
+body {
+  background: var(--color-septenary);
+  text-align: center;
+}
+
+header {
+  color: var(--color-senary-m-d);
+  padding: var(--padding-m-v) var(--padding-xs-h);
+  font-size: var(--font-size-d-s);
+}
+
+li {
+  font-size: var(--font-size-d-s);
+  padding: var(--padding-xxs-v) 0;
+}
+em {
+  display: block;
+  padding: var(--padding-xxs-v) 0;
+  font-size: var(--font-size-d-xs);
+}
