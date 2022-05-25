@@ -6,8 +6,8 @@
 // 3. obtener el número más grande y mostrarlo en un <em> pre-creado con el texto "El número más grande es..."
 // 4. obtener el número que más se repite y mostrarlo en un <em> pre-creado con el texto "El número más frecuente es..."
 
-const numerosLista = document.querySelectorAll(".numero-lista");
-console.log(numerosLista);
+const numerosLista = [...document.querySelectorAll(".numero-lista")];
+console.log(numerosLista[2]);
 
 function numeroPromedio(numerosLista) {
     for (let i = 0;i< numerosLista.length; i++)
