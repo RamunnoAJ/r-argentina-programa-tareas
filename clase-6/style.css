@@ -95,3 +95,11 @@ header {
   padding: var(--padding-m-v) var(--padding-xs-h);
   font-size: var(--font-size-d-s);
 }
+
+form {
+  font-size: var(--font-size-d-xs);
+}
+
+.miembro {
+  margin: var(--padding-xxs-v) 0;
+}

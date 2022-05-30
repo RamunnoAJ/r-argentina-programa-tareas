@@ -12,6 +12,27 @@
     <header>
       <h1>Tarea clase 6</h1>
     </header>
+    <main>
+      <form class="calculador-edades" onsubmit="false">
+        <label for="miembros-familia"
+          >Ingrese la cantidad de miembros en la familia</label
+        >
+        <input type="number" class="miembros-familia" />
+        <button type="button" class="siguiente">Siguiente</button>
+
+        <div class="miembros"></div>
+
+        <button type="button" class="calcular">Calcular</button>
+
+        <div class="calculos">
+          <p>La mayor edad es: <strong id="mayor-edad"></strong></p>
+          <p>La menor edad es: <strong id="menor-edad"></strong></p>
+          <p>La edad promedio es: <strong id="edad-promedio"></strong></p>
+        </div>
+
+        <button type="reset" class="limpiar">Limpiar</button>
+      </form>
+    </main>
     <script src="tarea-clase-6.js"></script>
   </body>
 </html>
