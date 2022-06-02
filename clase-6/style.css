@@ -103,3 +103,7 @@ form {
 .miembro {
   margin: var(--padding-xxs-v) 0;
 }
+
+.oculto {
+  display: none;
+}

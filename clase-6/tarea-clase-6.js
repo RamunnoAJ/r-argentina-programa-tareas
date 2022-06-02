@@ -8,13 +8,32 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 
 document.querySelector(".siguiente").onclick = function () {
   const $miembrosFamilia = document.querySelector(".miembros-familia");
-  const miembrosFamlia = Number($miembrosFamilia.value);
+  const miembrosFamilia = Number($miembrosFamilia.value);
 
   borrarMiembrosAnteriores();
-  crearMiembros(miembrosFamlia);
+  crearMiembros(miembrosFamilia);
+  mostrarBotones();
 
   return false;
 };
+
+function mostrarBotones() {
+  document.querySelector("#calcular").className = "";
+  document.querySelector("#limpiar").className = "";
+}
+
+function ocultarBotones() {
+  document.querySelector("#calcular").className = "oculto";
+  document.querySelector("#limpiar").className = "oculto";
+}
+
+function mostrarResultados() {
+  document.querySelector("#calculos").className = "";
+}
+
+function ocultarResultados() {
+  document.querySelector("#calculos").className = "oculto";
+}
 
 function crearMiembros(miembrosFamilia) {
   for (let i = 0; i < miembrosFamilia; i++) {
@@ -30,11 +49,13 @@ function crearMiembro(indice) {
   $label.textContent = `Edad del miembro ${indice + 1}`;
   const $input = document.createElement("input");
   $input.type = "number";
+  $input.className = "edad-miembro";
+  $input.min = "0";
 
   $div.appendChild($label);
   $div.appendChild($input);
 
-  const $miembros = document.querySelector(".miembros");
+  let $miembros = document.querySelector(".miembros");
   $miembros.appendChild($div);
 }
 
@@ -45,69 +66,70 @@ function borrarMiembrosAnteriores() {
   }
 }
 
-document.querySelector(".limpiar").onclick = function () {
+document.querySelector("#limpiar").onclick = function () {
   borrarMiembrosAnteriores();
+  ocultarBotones();
+  ocultarResultados();
 };
 
 function obtenerEdadMiembros() {
-  const $miembros = document.querySelectorAll(".miembro input");
+  const $miembros = document.querySelectorAll(".miembro .edad-miembro");
   const edades = [];
 
   for (let i = 0; i < $miembros.length; i++) {
-    edades.push(Number($miembros[i].value));
+    if ($miembros[i] !== "") {
+      edades.push(Number($miembros[i].value));
+    }
   }
 
   return edades;
 }
 
-document.querySelector(".calcular").onclick = function () {
+document.querySelector("#calcular").onclick = function () {
   const edades = obtenerEdadMiembros();
-
-  calcularMayorEdad(edades);
-
   const $mayorEdad = document.querySelector("#mayor-edad");
-  $mayorEdad.textContent = `${calcularMayorEdad(edades)}`;
-
+  $mayorEdad.textContent = `${calcularMayorNumero(edades)}`;
   const $menorEdad = document.querySelector("#menor-edad");
-  $menorEdad.textContent = `${calcularMenorEdad(edades)}`;
-
+  $menorEdad.textContent = `${calcularMenorNumero(edades)}`;
   const $promedioEdad = document.querySelector("#edad-promedio");
-  $promedioEdad.textContent = `${calcularPromedioEdad(edades)}`;
+  $promedioEdad.textContent = `${calcularPromedioNumero(edades)}`;
+
+  mostrarResultados();
 };
 
-function calcularMayorEdad(array) {
-  let mayorEdad = 0;
+function calcularMayorNumero(array) {
+  let mayorNumero = 0;
   for (let i = 0; i < array.length; i++) {
-    let edadMiembro = Number(array[i]);
+    let numeroMiembro = Number(array[i]);
 
-    if (edadMiembro > mayorEdad) {
-      mayorEdad = edadMiembro;
+    if (numeroMiembro > mayorNumero) {
+      mayorNumero = numeroMiembro;
     }
   }
 
-  return mayorEdad;
+  return mayorNumero;
 }
 
-function calcularMenorEdad(array) {
-  let menorEdad = array[0];
+function calcularMenorNumero(array) {
+  let menorNumero = array[0];
   for (let i = 0; i < array.length; i++) {
-    let edadMiembro = Number(array[i]);
+    let numeroMiembro = Number(array[i]);
 
-    if (edadMiembro < menorEdad) {
-      menorEdad = edadMiembro;
+    if (numeroMiembro < menorNumero) {
+      menorNumero = numeroMiembro;
     }
   }
 
-  return menorEdad;
+  return menorNumero;
 }
 
-function calcularPromedioEdad(array) {
-  let promedioEdad = 0;
+function calcularPromedioNumero(array) {
+  let promedioNumero = 0;
   for (let i = 0; i < array.length; i++) {
-    promedioEdad += Number(array[i]);
+    promedioNumero += Number(array[i]);
   }
 
-  return promedioEdad / array.length;
+  return promedioNumero / array.length;
 }
 
 /*
