@@ -6,33 +6,38 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad
 Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente, borrando los inputs ya creados (investigar cómo en MDN).
 */
 
-document.querySelector(".siguiente").onclick = function () {
-  const $miembrosFamilia = document.querySelector(".miembros-familia");
-  const miembrosFamilia = Number($miembrosFamilia.value);
+document.querySelector('.siguiente').onclick = function () {
+  const $miembrosFamilia = document.querySelector('.miembros-familia');
+  const miembrosFamilia = $miembrosFamilia.value;
 
   borrarMiembrosAnteriores();
   crearMiembros(miembrosFamilia);
-  mostrarBotones();
+  if (miembrosFamilia) {
+    mostrarBotones();
+  }
+  validarSiguiente();
 
-  return false;
+  $miembrosFamilia.value = '';
+
+  return '';
 };
 
 function mostrarBotones() {
-  document.querySelector("#calcular").className = "";
-  document.querySelector("#limpiar").className = "";
+  document.querySelector('#calcular').className = '';
+  document.querySelector('#limpiar').className = '';
 }
 
 function ocultarBotones() {
-  document.querySelector("#calcular").className = "oculto";
-  document.querySelector("#limpiar").className = "oculto";
+  document.querySelector('#calcular').className = 'oculto';
+  document.querySelector('#limpiar').className = 'oculto';
 }
 
 function mostrarResultados() {
-  document.querySelector("#calculos").className = "";
+  document.querySelector('#calculos').className = '';
 }
 
 function ocultarResultados() {
-  document.querySelector("#calculos").className = "oculto";
+  document.querySelector('#calculos').className = 'oculto';
 }
 
 function crearMiembros(miembrosFamilia) {
@@ -42,42 +47,43 @@ function crearMiembros(miembrosFamilia) {
 }
 
 function crearMiembro(indice) {
-  const $div = document.createElement("div");
-  $div.className = "miembro";
+  const $div = document.createElement('div');
+  $div.className = 'miembro';
 
-  const $label = document.createElement("label");
+  const $label = document.createElement('label');
   $label.textContent = `Edad del miembro ${indice + 1}`;
-  const $input = document.createElement("input");
-  $input.type = "number";
-  $input.className = "edad-miembro";
-  $input.min = "0";
+  const $input = document.createElement('input');
+  $input.type = 'number';
+  $input.className = 'edad-miembro';
+  $input.min = '0';
+  $input.name = 'edad';
 
   $div.appendChild($label);
   $div.appendChild($input);
 
-  let $miembros = document.querySelector(".miembros");
+  let $miembros = document.querySelector('.miembros');
   $miembros.appendChild($div);
 }
 
 function borrarMiembrosAnteriores() {
-  const $miembros = document.querySelectorAll(".miembro");
+  const $miembros = document.querySelectorAll('.miembro');
   for (let i = 0; i < $miembros.length; i++) {
     $miembros[i].remove();
   }
 }
 
-document.querySelector("#limpiar").onclick = function () {
+document.querySelector('#limpiar').onclick = function () {
   borrarMiembrosAnteriores();
   ocultarBotones();
   ocultarResultados();
 };
 
 function obtenerEdadMiembros() {
-  const $miembros = document.querySelectorAll(".miembro .edad-miembro");
+  const $miembros = document.querySelectorAll('.miembro .edad-miembro');
   const edades = [];
 
   for (let i = 0; i < $miembros.length; i++) {
-    if ($miembros[i] !== "") {
+    if ($miembros[i] !== '') {
       edades.push(Number($miembros[i].value));
     }
   }
@@ -85,13 +91,13 @@ function obtenerEdadMiembros() {
   return edades;
 }
 
-document.querySelector("#calcular").onclick = function () {
+document.querySelector('#calcular').onclick = function () {
   const edades = obtenerEdadMiembros();
-  const $mayorEdad = document.querySelector("#mayor-edad");
+  const $mayorEdad = document.querySelector('#mayor-edad');
   $mayorEdad.textContent = `${calcularMayorNumero(edades)}`;
-  const $menorEdad = document.querySelector("#menor-edad");
+  const $menorEdad = document.querySelector('#menor-edad');
   $menorEdad.textContent = `${calcularMenorNumero(edades)}`;
-  const $promedioEdad = document.querySelector("#edad-promedio");
+  const $promedioEdad = document.querySelector('#edad-promedio');
   $promedioEdad.textContent = `${calcularPromedioNumero(edades)}`;
 
   mostrarResultados();
@@ -139,3 +145,50 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
+
+const $form = document.querySelector('#calculador-edades');
+
+function validarCantidadMiembros(miembro) {
+  if (miembro === '') {
+    return 'Debes ingresar al menos 1 miembro';
+  }
+  if (/[^0-9]/i.test(miembro)) {
+    return 'Este campo sólo acepta números';
+  }
+
+  return '';
+}
+
+// function validarEdades(edades) {
+//   if (edades.length === 0) {
+//     return 'Debes ingresar al menos 1 número';
+//   }
+//   if (/[^0-9]/i.test(edades)) {
+//   }
+
+//   return '';
+// }
+
+function validarSiguiente() {
+  const cantidadMiembros = document.querySelector('.miembros-familia').value;
+
+  const errorMiembros = validarCantidadMiembros(cantidadMiembros);
+
+  const errores = {
+    miembros: errorMiembros,
+  };
+
+  console.log(errores);
+
+  manejarErrores(errores);
+}
+
+function manejarErrores(errores) {
+  errorMiembros = errores.miembros;
+
+  if (errorMiembros) {
+    document.querySelector('.miembros-familia').className = 'error';
+  } else {
+    document.querySelector('.miembros-familia').className = '';
+  }
+}
