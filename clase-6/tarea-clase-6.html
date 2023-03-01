@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clase 6 - Tarea 1</title>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Tarea clase 6</h1>
-    </header>
-    <main>
-      <form class="calculador-edades" name="formulario">
-        <label for="miembros-familia"
-          >Ingrese la cantidad de miembros en la familia</label
-        >
-        <input type="number" class="miembros-familia" name="miembros" />
-        <button type="button" class="siguiente">Siguiente</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clase 6 - Tarea 1</title>
 
-        <div class="miembros"></div>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-        <button type="button" id="calcular" class="oculto">Calcular</button>
+<body>
+  <header>
+    <h1 id="titulo">Tarea clase 6</h1>
+  </header>
+  <main>
+    <form class="calculador-edades" name="formulario">
+      <label for="miembros-familia">Ingrese la cantidad de miembros en la familia</label>
+      <input type="number" class="miembros-familia" id="miembros-familia" name="miembros" />
+      <button type="button" class="siguiente" id="boton-siguiente">Siguiente</button>
 
-        <div id="calculos" class="oculto">
-          <p>La mayor edad es: <strong id="mayor-edad"></strong></p>
-          <p>La menor edad es: <strong id="menor-edad"></strong></p>
-          <p>La edad promedio es: <strong id="edad-promedio"></strong></p>
-        </div>
+      <div class="miembros"></div>
 
-        <div id="calculos-salario" class="oculto">
-          <p>
-            El salario anual más alto es: <strong id="mayor-salario"></strong>
-          </p>
-          <p>
-            El salario anual más bajo es: <strong id="menor-salario"></strong>
-          </p>
-          <p>
-            El salario anual promedio es:
-            <strong id="salario-promedio"></strong>
-          </p>
-          <p>
-            El salario mensual promedio es:
-            <strong id="salario-mensual-promedio"></strong>
-          </p>
-        </div>
+      <button type="button" id="calcular" class="oculto">Calcular</button>
 
-        <button type="reset" id="limpiar" class="oculto">Limpiar</button>
-      </form>
-    </main>
-    <script src="tarea-clase-6.js"></script>
-    <script src="pruebas.js"></script>
-  </body>
+      <div id="calculos" class="oculto">
+        <p>La mayor edad es: <strong id="mayor-edad"></strong></p>
+        <p>La menor edad es: <strong id="menor-edad"></strong></p>
+        <p>La edad promedio es: <strong id="edad-promedio"></strong></p>
+      </div>
+
+      <div id="calculos-salario" class="oculto">
+        <p>
+          El salario anual más alto es: <strong id="mayor-salario"></strong>
+        </p>
+        <p>
+          El salario anual más bajo es: <strong id="menor-salario"></strong>
+        </p>
+        <p>
+          El salario anual promedio es:
+          <strong id="salario-promedio"></strong>
+        </p>
+        <p>
+          El salario mensual promedio es:
+          <strong id="salario-mensual-promedio"></strong>
+        </p>
+      </div>
+
+      <button type="reset" id="limpiar" class="oculto">Limpiar</button>
+    </form>
+  </main>
+  <script src="tarea-clase-6.js"></script>
+  <script src="pruebas.js"></script>
+</body>
+
 </html>
