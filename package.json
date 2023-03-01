@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "cypress": "^12.7.0"
+  },
+  "name": "r-argentina-programa-tareas",
+  "description": "Este repositorio es una traducción casi literal de https://github.com/muses-code-js/js-intro-workshop, de [MusesCodeJS](https://musescodejs.org/) y su autora Tanya Butenko.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c -1",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RamunnoAJ/r-argentina-programa-tareas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RamunnoAJ/r-argentina-programa-tareas/issues"
+  },
+  "homepage": "https://github.com/RamunnoAJ/r-argentina-programa-tareas#readme"
+}
