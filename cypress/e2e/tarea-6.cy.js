@@ -1,8 +1,4 @@
-import {
-  calcularMayorNumero,
-  calcularMenorNumero,
-  calcularPromedioNumero
-} from '../../clase-6/funciones.js'
+/// <reference types="Cypress"  />
 
 const URL = 'http://127.0.0.1:8080/clase-6/tarea-clase-6.html'
 
@@ -48,33 +44,21 @@ context('Formulario de familias', () => {
   })
 
   describe('Verifica que la aplicación ande', () => {
-    let edades = []
-
     it('se asegura que crea 4 inputs funcionales al ingresar 4 miembros', () => {
       cy.get('#miembros-familia').type('4')
       cy.get('#boton-siguiente').click()
       cy.get('.miembro').should('have.length', 4)
 
-      cy.get('.miembro')
-        .each((miembro) => {
-          const numeroAleatorio = obtenerNumeroAleatorio(25)
-          edades.push(numeroAleatorio)
-          cy.get(miembro).type(numeroAleatorio)
-        })
-        .then(() => {
-          cy.get('#calcular').click()
+      cy.get('.miembro').eq(0).type('10')
+      cy.get('.miembro').eq(1).type('20')
+      cy.get('.miembro').eq(2).type('25')
+      cy.get('.miembro').eq(3).type('30')
 
-          cy.get('#mayor-edad').should('have.text', calcularMayorNumero(edades))
-          cy.get('#menor-edad').should('have.text', calcularMenorNumero(edades))
-          cy.get('#edad-promedio').should(
-            'have.text',
-            calcularPromedioNumero(edades)
-          )
-        })
+      cy.get('#calcular').click()
+
+      cy.get('#mayor-edad').should('have.text', '30')
+      cy.get('#menor-edad').should('have.text', '10')
+      cy.get('#edad-promedio').should('have.text', '21.25')
     })
   })
 })
-
-function obtenerNumeroAleatorio(max) {
-  return Math.floor(Math.random() * max)
-}
