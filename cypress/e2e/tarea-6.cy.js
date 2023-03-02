@@ -1,3 +1,9 @@
+import {
+  calcularMayorNumero,
+  calcularMenorNumero,
+  calcularPromedioNumero
+} from '../../clase-6/funciones.js'
+
 const URL = 'http://127.0.0.1:8080/clase-6/tarea-clase-6.html'
 
 context('Formulario de familias', () => {
@@ -40,4 +46,28 @@ context('Formulario de familias', () => {
       cy.get('.miembros').should('not.be.visible')
     })
   })
+
+  describe('Verifica que la aplicación ande', () => {
+    let edades = []
+
+    it('se asegura que crea 4 inputs funcionales al ingresar 4 miembros', () => {
+      cy.get('#miembros-familia').type('4')
+      cy.get('#boton-siguiente').click()
+      cy.get('.miembro').should('have.length', 4)
+
+      cy.get('.miembro')
+        .each((miembro) => {
+          const numeroAleatorio = obtenerNumeroAleatorio(25)
+          edades.push(numeroAleatorio)
+          cy.get(miembro).type(numeroAleatorio)
+        })
+        .then(() => {
+          cy.get('#calcular').click()
+        })
+    })
+  })
 })
+
+function obtenerNumeroAleatorio(max) {
+  return Math.floor(Math.random() * max)
+}
