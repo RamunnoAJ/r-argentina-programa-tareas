@@ -63,6 +63,13 @@ context('Formulario de familias', () => {
         })
         .then(() => {
           cy.get('#calcular').click()
+
+          cy.get('#mayor-edad').should('have.text', calcularMayorNumero(edades))
+          cy.get('#menor-edad').should('have.text', calcularMenorNumero(edades))
+          cy.get('#edad-promedio').should(
+            'have.text',
+            calcularPromedioNumero(edades)
+          )
         })
     })
   })
